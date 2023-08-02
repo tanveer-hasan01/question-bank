@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.diu_qustion_bank.databinding.ActivitySetUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -13,6 +14,8 @@ class SetUpActivity : AppCompatActivity() {
     @Inject
     lateinit var sharedPreference: SharedPreferences
     private lateinit var binding: ActivitySetUpBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +36,15 @@ class SetUpActivity : AppCompatActivity() {
 
         binding.deptSpinner.setOnItemClickListener { adapterView, view, i, l ->
 
-            sharedPreference.edit().putInt("dept", i).apply()
+            sharedPreference.edit().putString("dept", deptList[i]).apply()
+            Utils.showToast(""+deptList[i],this)
 
         }
+
+
+
+
+
 
         /*  if (sharedPreference.getInt("dept",-1).toString().equals(0)){
               binding.deptSpinner.threshold=0

@@ -2,6 +2,7 @@ package com.example.diu_qustion_bank.di
 
 import android.content.SharedPreferences
 import com.example.diu_qustion_bank.SharedPrefManager
+import com.example.diu_qustion_bank.Utils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +17,6 @@ object SystemServiceModule{
     fun provideSharedPreferences(
         sharedPrefManager: SharedPrefManager
     ): SharedPreferences = sharedPrefManager.getSharedPref()
+
+
 }
