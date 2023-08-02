@@ -15,6 +15,7 @@ class SetUpActivity : AppCompatActivity() {
     lateinit var sharedPreference: SharedPreferences
     private lateinit var binding: ActivitySetUpBinding
 
+    var selectedDept=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +34,11 @@ class SetUpActivity : AppCompatActivity() {
             deptList
         )
         binding.deptSpinner.setAdapter(deptAdapter)
+        binding.deptSpinner.setText(sharedPreference.getString("dept",""), false);
+
 
         binding.deptSpinner.setOnItemClickListener { adapterView, view, i, l ->
-
-            sharedPreference.edit().putString("dept", deptList[i]).apply()
-            Utils.showToast(""+deptList[i],this)
-
+            selectedDept=deptList[i]
         }
 
 
@@ -46,11 +46,13 @@ class SetUpActivity : AppCompatActivity() {
 
 
 
-        /*  if (sharedPreference.getInt("dept",-1).toString().equals(0)){
-              binding.deptSpinner.threshold=0
-          }else if(sharedPreference.getInt("dept",-1).toString().equals(1)){
-              binding.deptSpinner.text=
-          }*/
+       binding.save.setOnClickListener {
+           if (!selectedDept.isNullOrEmpty()){
+               sharedPreference.edit().putString("dept",selectedDept).apply()
+               Utils.showSnackBar("Updated",it)
+           }
+
+       }
 
 
     }
