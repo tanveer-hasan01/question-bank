@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "230493539265-235q1n6frk5iffcd5iqtc9kunk1g5582.apps.googleusercontent.com",
+          "client_id": "230493539265-bqfq9hicgmarsrdielvta9e5ak0k9gov.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diu_qustion_bank",
+            "certificate_hash": "5d8e80252506d6ad63789bd48c1ee5886ddef6df"
+          }
+        },
+        {
+          "client_id": "230493539265-s4a7j7fc6v34bcb9d969eq0fq078ncir.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
