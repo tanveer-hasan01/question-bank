@@ -1,6 +1,7 @@
 package com.example.diu_qustion_bank
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
@@ -63,12 +65,25 @@ class LoginActivity : AppCompatActivity() {
         if (task.isSuccessful){
             val account : GoogleSignInAccount? = task.result
             if (account != null){
+                updateUI(account)
+            }
+        }else{
+            Utils.showToast(task.exception.toString(),this)
+        }
+    }
+
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken , null)
+        auth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful){
+                val intent : Intent = Intent(this , MainActivity::class.java)
                 sharedPreferences.edit().putString("name",account.displayName).apply()
                 sharedPreferences.edit().putString("email",account.email).apply()
                 sharedPreferences.edit().putString("photo",account.photoUrl.toString()).apply()
+                startActivity(intent)
+            }else{
+                Utils.showToast(it.exception.toString(),this)
             }
-        }else{
-            Toast.makeText(this, task.exception.toString() , Toast.LENGTH_SHORT).show()
         }
     }
 }
