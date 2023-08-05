@@ -16,8 +16,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
@@ -77,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 val intent : Intent = Intent(this , MainActivity::class.java)
+
                 sharedPreferences.edit().putString("name",account.displayName).apply()
                 sharedPreferences.edit().putString("email",account.email).apply()
                 sharedPreferences.edit().putString("photo",account.photoUrl.toString()).apply()
