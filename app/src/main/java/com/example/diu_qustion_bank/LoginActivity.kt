@@ -79,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
             if (it.isSuccessful){
                 val intent : Intent = Intent(this , MainActivity::class.java)
 
+                Utils.showSnackBar("Hi "+account.displayName,binding.root)
                 sharedPreferences.edit().putString("name",account.displayName).apply()
                 sharedPreferences.edit().putString("email",account.email).apply()
                 sharedPreferences.edit().putString("photo",account.photoUrl.toString()).apply()

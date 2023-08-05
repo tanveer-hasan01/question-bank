@@ -10,8 +10,8 @@ import com.google.android.material.snackbar.Snackbar
 
 object Utils {
 
-    fun showToast(msg: String?, ctx: Context?) {
-        Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show()
+    fun showToast(msg: String?, context: Context?) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
     fun showSnackBar(msg: CharSequence?,view: View){
@@ -20,7 +20,20 @@ object Utils {
             Snackbar.LENGTH_LONG).setAction("ok", null)
         snackbar.setActionTextColor(Color.WHITE)
         val snackbarView = snackbar.view
-        snackbarView.setBackgroundColor(Color.BLUE)
+        snackbarView.setBackgroundColor( view.resources.getColor(R.color.success))
+        val textView =
+            snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+
+    fun showErrorSnackBar(msg: CharSequence?,view: View){
+
+        val snackbar = Snackbar.make(view, msg!!,
+            Snackbar.LENGTH_LONG).setAction("ok", null)
+        snackbar.setActionTextColor(Color.WHITE)
+        val snackbarView = snackbar.view
+        snackbarView.setBackgroundColor( view.resources.getColor(R.color.error))
         val textView =
             snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)

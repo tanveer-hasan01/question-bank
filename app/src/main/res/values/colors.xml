@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#7895CB</color>
-
+    <color name="success">#5cb85c</color>
+    <color name="error">#C73E1D</color>
 </resources>
